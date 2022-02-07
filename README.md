@@ -25,3 +25,13 @@
 Срок хранения результатов запроса (промежуток между обращениями к методам /search/ и методу /result) — 24 часа.
 
 ## Пример:
+```java
+FsspApiClient apiClient = new FsspApiClient();
+//create search task
+SearchPhysicalRequest requestTask = new SearchPhysicalRequest(testToken,"Ткаченко","Юрий", "Васильевич", LocalDate.parse("18.06.1982",formatter), 1);
+GenericResponse<Task> responseTask = apiClient.searchPhysical(request);
+//get result
+String taskUUID=responseTask.getResponse().getTask();
+ResultRequest request = new ResultRequest(testToken, taskUUID);
+GenericResponse<Result> response = apiClient.result(request);
+```
